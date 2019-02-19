@@ -15,7 +15,14 @@
 				<option value="3">multiply</option>
 				<option value="4">divide</option>
 				<option value="5">Power</option>
-				<option value="6">(a+b)^2</option>
+				<option value="6">(a + b)^2</option>
+				<option value="7">(a – b)^2</option>
+				<option value="8"> a^2 + b^2</option>
+				<option value="9"> a^2 - b^2</option>
+				<option value="10">(a + b)^3</option>
+				<option value="11">(a - b)^3</option>
+				<option value="12">a^3 + b^3</option>
+				<option value="13">a^3 - b^3</option>
 			</select>
 			<input type="text" id="value2" name="" value="" placeholder="">
 
@@ -69,16 +76,125 @@
 				var result = divOperation(value1,value2);
 			} else if (operation == 5) {
 				var result = powerOperation(value1,value2);
-			} else {
-				var result = squareOperation(value1,value2);
+			} else if (operation == 6) {
+				var result= squareOperation(value1,value2);
+			} else if (operation == 7) {
+				var result = squareOperation2(value1,value2);
+			} else if (operation == 8) {
+				var result = squareOperation3(value1,value2);
+			} else if (operation == 9) {
+				var result = squareOperation4(value1,value2);
+			} else if (operation == 10) {
+				var result = qubeOperation(value1,value2);
+			} else if (operation == 11) {
+				var result = qubeOperation2(value1,value2);
+			} else if( operation == 12){
+				var result = qubeOperation3(value1,value2);
+			} else if(operation == 13){
+				var result = qubeOperation4(value1, value2);
 			}
 			// end of if else statement
 			$("#result").html(result);
 
 			
 		});
+		// operation of plus operation
+		function sumOperation(a,b){
+			var result = a + b;	
+			return result;			
 
+		}
+		// function for minus operatation
 
+		function minOperation(a,b){
+			var result = a - b;
+			return result;
+		}
+		// function of multiply operation
+		function mulOperation(a,b){
+			var result = a * b;
+			return result;
+		}
+		// function of divide operation
+		function divOperation(a,b){
+			var result = a / b;
+			return result;
+		}
+		// for loop function for powerOperation
+		function powerOperation(a,b){
+			var result = 1;
+			for (var i = 0; i < b; i++) {
+				result = result * a;
+			}
+			return result;
+		}
+		// function for (a+b)^2
+		function squareOperation(a,b){
+			var x = powerOperation(a,2);
+			var y = 2*mulOperation(a,b);
+			var z = powerOperation(b,2);
+			var result = x + y + z;
+			return result;
+		}
+		// function for (a-b)^2
+		function squareOperation2(a,b){
+			var x = powerOperation(a,2);
+			var y = 2*mulOperation(a,b);
+			var z = powerOperation(b,2);
+			var result = x - y + z;
+			return result;
+		}
+		// function for a^2 + b^2
+		function squareOperation3(a,b){
+			var x = squareOperation(a,b);
+			var y = 2*mulOperation(a,b);
+			var result = x - y;
+			return result;
+		}
+		// function for a^2 - b^2 
+		function squareOperation4(a,b){
+			var x = sumOperation(a,b);
+			var y = minOperation(a,b);
+			var result = x - y;
+			return result;
+		}
+		// function for  (a+b)^3
+		function qubeOperation(a,b){
+			var w = powerOperation(a,3);
+			var x = powerOperation(b,3);
+			var y = 3*mulOperation(a,b);
+			var z = sumOperation(a,b);
+			var result = w + x + y * z;
+			return result;
+		}
+		// function for (a-b)^3
+		function qubeOperation2(a,b){
+			var w = powerOperation(a,3);
+			var x = powerOperation(b,3);
+			var y = 3*mulOperation(a,b);
+			var z = minOperation(a,b);
+			var result = w - x - y * z;
+			return result;
+		}
+		// function for a^3 + b^3
+		function qubeOperation3(a,b){
+			var x = qubeOperation(a,b);
+			var y = 3*mulOperation(a,b);
+			var z = sumOperation(a,b);
+			var result = x - y * z;
+			return result;
+		}
+		
+
+		function qubeOperation4(a,b){
+			var x = minOperation(a,b);
+			var y = powerOperation(a,2);
+			var z = mulOperation(a,b);
+			var q = powerOperation(b,2);
+			var p = y + z + q;
+			var result = x * p;
+			return result;
+		}
 
 		function myCss()
 		{
@@ -117,7 +233,7 @@
 
 		function myClientCss()
 		{
-			$("body").css({"background-color":"teal"});
+			$("body").css({"background-color":"orange"});
 			$("h1").css({
 							"text-align" : "center"
 						});
@@ -158,43 +274,8 @@
 
 			});
 		}
-		// operation of plus operation
-		function sumOperation(a,b){
-			var result = a + b;	
-			return result;			
+		
 
-		}
-		// function for minus operatation
-
-		function minOperation(a,b){
-			var result = a - b;
-			return result;
-		}
-		// function of multiply operation
-		function mulOperation(a,b){
-			var result = a * b;
-			return result;
-		}
-		// function of divide operation
-		function divOperation(a,b){
-			var result = a / b;
-			return result;
-		}
-		// for loop function for powerOperation
-		function powerOperation(a,b){
-			var result = 1;
-			for (var i = 0; i < b; i++) {
-				result = result * a;
-			}
-			return result;
-		}
-		function squareOperation(a,b){
-			var x = powerOperation(a,2);
-			var y = 2*mulOperation(a,b);
-			var z = powerOperation(b,2);
-			var result = x + y + z;
-			return result;
-		}
 	</script>
 	
 </html>
